@@ -1,10 +1,11 @@
 package assign02;
 
+
 /**
  * This class represents a book, in which the ISBN, author, and title cannot
- * change once the book is created. Note that ISBNs are unique.
+ * change once the book is created.  Note that ISBNs are unique.
  * 
- * @author Erin Parker and ??
+ * @author Erin Parker, Sheldon Jensen, and Lin Pan
  * @version January 16, 2019
  */
 public class Book {
@@ -56,22 +57,37 @@ public class Book {
 	}
 
 	/**
-	 * Two books are considered equal if they have the same ISBN, author, and title.
+	 * Two books are considered equal if they have the same ISBN, author, and
+	 * title.
 	 * 
 	 * @param other - the object begin compared with this book
-	 * @return true if other object is a Book type and is equal to this book, false
-	 *         otherwise
+	 * @return true if other object is a Book type and is equal to this book, false otherwise
 	 */
 	public boolean equals(Object other) {
 		// FILL IN -- do not return false unless appropriate
-		Book otherBook = (Book) other;
-		
-		if (this.getIsbn() == otherBook.getIsbn() && this.getAuthor().equals(otherBook.getAuthor())
-				&& this.getTitle().equals(otherBook.getTitle()))
-			;
+		if (other instanceof Book)
 		{
-			return true;
+			return false;
 		}
+		
+		Book otherBook = (Book)other;
+		
+		if (otherBook.getAuthor() != this.getAuthor())
+		{
+			return false;
+		}
+		
+		if (otherBook.getIsbn() != this.getIsbn())
+		{
+			return false;
+		}
+		
+		if (otherBook.getTitle() != this.getTitle())
+		{
+			return false;
+		}
+		
+		return true;
 	}
 
 	/**
