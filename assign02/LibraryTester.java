@@ -41,12 +41,12 @@ public class LibraryTester {
 		assertNull(emptyLib.lookup(978037429279L));
 	}
 	
-//	@Test
-//	public void testEmptyLookupHolder() {
-//		ArrayList<LibraryBook> booksCheckedOut = emptyLib.lookup("Jane Doe");
-//		assertNotNull(booksCheckedOut);
-//		assertEquals(0, booksCheckedOut.size());
-//	}
+	@Test
+	public void testEmptyLookupHolder() {
+		ArrayList<LibraryBook> booksCheckedOut = emptyLib.lookup("Jane Doe");
+		assertNotNull(booksCheckedOut);
+		assertEquals(0, booksCheckedOut.size());
+	}
 	
 	@Test
 	public void testEmptyCheckout() {
@@ -68,16 +68,16 @@ public class LibraryTester {
 		assertNull(smallLib.lookup(9780330351690L));
 	}
 	
-//	@Test
-//	public void testSmallLibraryLookupHolder() {
-//		smallLib.checkout(9780330351690L, "Jane Doe", 1, 1, 2008);
-//		ArrayList<LibraryBook> booksCheckedOut = smallLib.lookup("Jane Doe");
-//		
-//		assertNotNull(booksCheckedOut);
-//		assertEquals(1, booksCheckedOut.size());
-//		assertEquals(new Book(9780330351690L, "Jon Krakauer", "Into the Wild"), booksCheckedOut.get(0));
-//		assertEquals("Jane Doe", booksCheckedOut.get(0).getHolder());
-//	}
+	@Test
+	public void testSmallLibraryLookupHolder() {
+		smallLib.checkout(9780330351690L, "Jane Doe", 1, 1, 2008);
+		ArrayList<LibraryBook> booksCheckedOut = smallLib.lookup("Jane Doe");
+		
+		assertNotNull(booksCheckedOut);
+		assertEquals(1, booksCheckedOut.size());
+		assertEquals(new Book(9780330351690L, "Jon Krakauer", "Into the Wild"), booksCheckedOut.get(0));
+		assertEquals("Jane Doe", booksCheckedOut.get(0).getHolder());
+	}
 
 	@Test
 	public void testSmallLibraryCheckout() {
