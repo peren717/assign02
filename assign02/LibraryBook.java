@@ -13,12 +13,6 @@ import java.util.GregorianCalendar;
 
 
 public class LibraryBook extends Book {
-
-	private long isbn;
-
-	private String author;
-
-	private String title;
 	
 	private String holder;
 	
