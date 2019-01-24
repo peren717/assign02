@@ -1,6 +1,5 @@
 package assign02;
 
-import java.util.*;
 import java.util.GregorianCalendar;
 
 /**
@@ -11,9 +10,8 @@ import java.util.GregorianCalendar;
  * @version January 16, 2019
  */
 
-
 public class LibraryBook extends Book {
-	
+
 	private String holder;
 	
 	private GregorianCalendar dueDate;

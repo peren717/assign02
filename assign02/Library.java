@@ -134,12 +134,13 @@ public class Library {
 	public ArrayList<LibraryBook> lookup(String holder) {
 		// FILL IN -- do not return null
 		ArrayList<LibraryBook> result = new ArrayList<LibraryBook>();
-
-		for (LibraryBook book : library) {
+		
+		for (LibraryBook book : library)
+		{
 			if (book.getHolder() != null && book.getHolder().equals(holder)) {
 				result.add(book);
 			}
-		}
+		}		
 		return result;
 	}
 

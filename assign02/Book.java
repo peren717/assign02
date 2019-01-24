@@ -65,14 +65,14 @@ public class Book {
 	 */
 	public boolean equals(Object other) {
 		// FILL IN -- do not return false unless appropriate
-		if (other instanceof Book)
+		if (other instanceof Book == false)
 		{
 			return false;
 		}
 		
 		Book otherBook = (Book)other;
 		
-		if (otherBook.getAuthor() != this.getAuthor())
+		if (!otherBook.getAuthor().equals(this.getAuthor()))
 		{
 			return false;
 		}
@@ -82,7 +82,7 @@ public class Book {
 			return false;
 		}
 		
-		if (otherBook.getTitle() != this.getTitle())
+		if (!otherBook.getTitle().equals(this.getTitle()))
 		{
 			return false;
 		}
