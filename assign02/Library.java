@@ -149,6 +149,7 @@ public class Library {
 	 */
 	public boolean checkout(long isbn, String holder, int month, int day, int year) {
 		// FILL IN -- do not return false unless appropriate
+		
 		boolean isbnFound = false;
 		
 		for (LibraryBook book : this.library)
@@ -177,7 +178,20 @@ public class Library {
 	 */
 	public boolean checkin(long isbn) {
 		// FILL IN -- do not return false unless appropriate
-		return false;
+		
+		// Set up boolean condition if a book was checked in or not
+		boolean bookCheckedIn = false;
+		
+		// Run through library and check in this book with specified isbn
+		for (LibraryBook book : this.library)
+		{
+			if (book.getIsbn() == isbn && book.isCheckedOut())
+			{
+				bookCheckedIn = true;
+				book.checkIn();
+			}
+		}
+		return bookCheckedIn;
 	}
 
 	/**
@@ -192,6 +206,20 @@ public class Library {
 	 */
 	public boolean checkin(String holder) {
 		// FILL IN -- do not return false unless appropriate
-		return false;
+		
+		// Set up boolean condition if a book was checked in or not
+		boolean booksCheckedIn = false;
+		
+		// Run through library and check in books with specified holder
+		for (LibraryBook book : this.library)
+		{
+			if (book.getHolder() != null && book.getHolder().equals(holder))
+			{
+				booksCheckedIn = true;
+				book.checkIn();
+			}
+		}
+		
+		return booksCheckedIn;
 	}
 }
