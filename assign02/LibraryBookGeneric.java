@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 /**
  * This class represents a library book, in which the ISBN, author, and title cannot
  * change once the book is created.  Note that ISBNs are unique.
- * 
+ * X
  * @author Sheldon Jensen
  * @version January 16, 2019
  */
