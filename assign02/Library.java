@@ -1,4 +1,3 @@
-
 package assign02;
 
 import java.io.File;
@@ -25,20 +24,20 @@ public class Library {
 	}
 
 	/**
-	 * Adds to the library the book, specified by the given ISBN, author, and title.
-	 * Assumes there is no possibility of duplicate library books.
+	 * Adds to the library the book, specified by the given ISBN, author, and
+	 * title. Assumes there is no possibility of duplicate library books.
 	 * 
-	 * @param isbn   - ISBN of the book to be added
+	 * @param isbn - ISBN of the book to be added
 	 * @param author - author of the book to be added
-	 * @param title  - title of the book to be added
+	 * @param title - title of the book to be added
 	 */
 	public void add(long isbn, String author, String title) {
 		library.add(new LibraryBook(isbn, author, title));
 	}
 
 	/**
-	 * Add the list of library books to the library. Assumes there is no possibility
-	 * of duplicate library books.
+	 * Add the list of library books to the library. Assumes there is no
+	 * possibility of duplicate library books.
 	 * 
 	 * @param list - list of library books to be added
 	 */
@@ -47,9 +46,9 @@ public class Library {
 	}
 
 	/**
-	 * Adds the the library the books specified by the input file. Assumes the input
-	 * files specifies one book per line with ISBN, author, and title separated by
-	 * tabs.
+	 * Adds the the library the books specified by the input file. Assumes the
+	 * input files specifies one book per line with ISBN, author, and title
+	 * separated by tabs.
 	 * 
 	 * If file does not exist or format is violated, prints an error message and
 	 * does not change the library.
@@ -63,25 +62,25 @@ public class Library {
 			Scanner fileIn = new Scanner(new File(filename));
 			int lineNum = 1;
 
-			while (fileIn.hasNextLine()) {
+			while(fileIn.hasNextLine()) {
 				String line = fileIn.nextLine();
 
 				Scanner lineIn = new Scanner(line);
 				lineIn.useDelimiter("\\t");
 
-				if (!lineIn.hasNextLong()) {
+				if(!lineIn.hasNextLong()) {
 					lineIn.close();
 					throw new ParseException("ISBN", lineNum);
 				}
 				long isbn = lineIn.nextLong();
 
-				if (!lineIn.hasNext()) {
+				if(!lineIn.hasNext()) {
 					lineIn.close();
 					throw new ParseException("Author", lineNum);
 				}
 				String author = lineIn.next();
 
-				if (!lineIn.hasNext()) {
+				if(!lineIn.hasNext()) {
 					lineIn.close();
 					throw new ParseException("Title", lineNum);
 				}
@@ -93,10 +92,12 @@ public class Library {
 				lineIn.close();
 			}
 			fileIn.close();
-		} catch (FileNotFoundException e) {
+		}
+		catch(FileNotFoundException e) {
 			System.err.println(e.getMessage() + " Nothing added to the library.");
 			return;
-		} catch (ParseException e) {
+		}
+		catch(ParseException e) {
 			System.err.println(e.getLocalizedMessage() + " formatted incorrectly at line " + e.getErrorOffset()
 					+ ". Nothing added to the library.");
 			return;
@@ -147,28 +148,32 @@ public class Library {
 	 * 
 	 * If no book with the specified ISBN is in the library, returns false.
 	 * 
-	 * If the book with the specified ISBN is already checked out, returns false.
+	 * If the book with the specified ISBN is already checked out, returns
+	 * false.
 	 * 
 	 * Otherwise, returns true.
 	 * 
-	 * @param isbn   - ISBN of the library book to be checked out
+	 * @param isbn - ISBN of the library book to be checked out
 	 * @param holder - new holder of the library book
-	 * @param month  - month of the new due date of the library book
-	 * @param day    - day of the new due date of the library book
-	 * @param year   - year of the new due date of the library book
+	 * @param month - month of the new due date of the library book
+	 * @param day - day of the new due date of the library book
+	 * @param year - year of the new due date of the library book
 	 * 
 	 */
 	public boolean checkout(long isbn, String holder, int month, int day, int year) {
 		// FILL IN -- do not return false unless appropriate
+		
 		boolean isbnFound = false;
-
-		for (LibraryBook book : this.library) {
-			if (book.getIsbn() == isbn) {
+		
+		for (LibraryBook book : this.library)
+		{
+			if (book.getIsbn() == isbn)
+			{
 				isbnFound = true;
 				book.checkOut(holder, month, day, year);
 			}
 		}
-
+		
 		// Return whether checkout was successful or not
 		return isbnFound;
 	}
@@ -186,7 +191,20 @@ public class Library {
 	 */
 	public boolean checkin(long isbn) {
 		// FILL IN -- do not return false unless appropriate
-		return false;
+		
+		// Set up boolean condition if a book was checked in or not
+		boolean bookCheckedIn = false;
+		
+		// Run through library and check in this book with specified isbn
+		for (LibraryBook book : this.library)
+		{
+			if (book.getIsbn() == isbn && book.isCheckedOut())
+			{
+				bookCheckedIn = true;
+				book.checkIn();
+			}
+		}
+		return bookCheckedIn;
 	}
 
 	/**
@@ -201,6 +219,20 @@ public class Library {
 	 */
 	public boolean checkin(String holder) {
 		// FILL IN -- do not return false unless appropriate
-		return false;
+		
+		// Set up boolean condition if a book was checked in or not
+		boolean booksCheckedIn = false;
+		
+		// Run through library and check in books with specified holder
+		for (LibraryBook book : this.library)
+		{
+			if (book.getHolder() != null && book.getHolder().equals(holder))
+			{
+				booksCheckedIn = true;
+				book.checkIn();
+			}
+		}
+		
+		return booksCheckedIn;
 	}
 }
