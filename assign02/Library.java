@@ -149,7 +149,19 @@ public class Library {
 	 */
 	public boolean checkout(long isbn, String holder, int month, int day, int year) {
 		// FILL IN -- do not return false unless appropriate
-		return false;
+		boolean isbnFound = false;
+		
+		for (LibraryBook book : this.library)
+		{
+			if (book.getIsbn() == isbn)
+			{
+				isbnFound = true;
+				book.checkOut(holder, month, day, year);
+			}
+		}
+		
+		// Return whether checkout was successful or not
+		return isbnFound;
 	}
 
 	/**

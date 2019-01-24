@@ -22,6 +22,8 @@ public class LibraryBook extends Book {
 	
 	private GregorianCalendar dueDate;
 	
+	private boolean checkedOut;
+	
 	/**
 	 * Creates a book from the given ISBN, author, and title.
 	 * 
@@ -33,6 +35,7 @@ public class LibraryBook extends Book {
 		super (isbn, author, title);
 		holder = null;
 		dueDate = null;
+		checkedOut = false;
 	}
 	
 	/**
@@ -53,6 +56,7 @@ public class LibraryBook extends Book {
 	 * Checks the book into the library
 	 */
 	public void checkIn() {
+		checkedOut = false;
 		holder = null;
 		dueDate = null;
 	}
@@ -60,7 +64,16 @@ public class LibraryBook extends Book {
 	/**
 	 * Checks the book out of the library
 	 */
-	public void checkOut() {
-		
+	public void checkOut(String holder, int month, int day, int year) {
+		checkedOut = true;
+		this.holder = holder;
+		dueDate = new GregorianCalendar(year, month, day);
+	}
+	
+	/**
+	 * Returns whether the book is checked out or not
+	 */
+	public boolean isCheckedOut() {
+		return this.checkedOut;
 	}
 }
